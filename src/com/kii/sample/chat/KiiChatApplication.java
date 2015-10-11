@@ -21,10 +21,13 @@ public class KiiChatApplication extends Application {
 		super.onCreate();
 		context = this;
 		// Initialize SDK when application is started.
-		Logger.i("■■■ initialize KII SDK ■■■");
-		Kii.initialize(ApplicationConst.APP_ID, ApplicationConst.APP_KEY, Kii.Site.JP);
-		Logger.i("■■■ initialize KII Analytics SDK ■■■");
-		KiiAnalytics.initialize(context, ApplicationConst.APP_ID, ApplicationConst.APP_KEY, KiiAnalytics.Site.JP);
+		import com.kii.cloud.storage.*;
+
+// Configures the SDK to use the specified Application ID and Key.
+// It must be called prior to any API calls.
+// It is ok to call this method multiple times
+Kii.initialize(ApplicationConst.d5e4f6fb, ApplicationConst.e09f6755ee0bb0b8f7b230c79c3221f0, Kii.Site.JP);
+KiiAnalytics.initialize(context, ApplicationConst.d5e4f6fb, ApplicationConst.e09f6755ee0bb0b8f7b230c79c3221f0, KiiAnalytics.Site.JP);
 	}
 	public static Context getContext(){
 		return context;

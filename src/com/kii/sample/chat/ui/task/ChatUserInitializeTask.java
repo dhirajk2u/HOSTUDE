@@ -73,11 +73,11 @@ public abstract class ChatUserInitializeTask extends AsyncTask<Void, Void, Boole
 		// 4.Setting ACL to the topic.
 		// 5.Subscribing the topic.
 		KiiUser kiiUser = KiiUser.getCurrentUser();
-		ChatUser user = ChatUser.findByUri(kiiUser.toUri());
-		if (user == null) {
-			user = new ChatUser(kiiUser.toUri().toString(), username, email);
-			user.getKiiObject().save();
-		}
+ChatUser user = ChatUser.findByUri(kiiUser.toUri());
+if (user == null) {
+  user = new ChatUser(kiiUser.toUri().toString(), username, email);
+  user.getKiiObject().save();
+}
 		installGCMRegistrationID();
 		// This topic is used to receive notification that other user starts chat with this user.
 		KiiTopic topic = KiiUser.topic(ApplicationConst.TOPIC_INVITE_NOTIFICATION);

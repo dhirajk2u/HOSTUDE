@@ -17,21 +17,29 @@ import android.text.TextUtils;
  * 
  * @author noriyoshi.fukuzaki@kii.com
  */
-public class MainActivity extends ActionBarActivity {
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		String token = PreferencesManager.getStoredAccessToken();
-		if (!TextUtils.isEmpty(token)) {
-			SimpleProgressDialogFragment.show(getSupportFragmentManager(), "Login", "Processing...");
-			KiiUser.loginWithToken(new KiiUserCallBack() {
-				@Override
-				public void onLoginCompleted(int token, KiiUser user, Exception e) {
-					if (e == null) {
-						ChatRoom.ensureSubscribedBucket(user);
-						Intent intent = new Intent(MainActivity.this, ChatMainActivity.class);
-						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-						startActivity(intent);
+String token = PreferencesManager.getStoredAccessToken();
+if (!TextUtils.isEmpty(token)) {
+  KiiUser.loginWithToken(new KiiUserCallBack() {
+    @Override
+    public void onLoginCompleted(int token, KiiUser user, Exception e) {
+        if (e == null) {
+          ChatRoom.ensureSubscribedBucket(user);
+          Intent intent = new Intent(MainActivity.this, ChatMainActivity.class);
+          intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+          startActivity(intent);
+        } else {
+          PreferencesManager.setStoredAccessToken("");
+          Intent intent = new Intent(MainActivity.this, SigninActivity.class);
+          intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+          startActivity(intent);
+       
+    }
+  },token);
+} else {
+  Intent intent = new Intent(MainActivity.this, SigninActivity.class);
+  intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+  startActivity(intent);
+}
 					} else {
 						PreferencesManager.setStoredAccessToken("");
 						Intent intent = new Intent(MainActivity.this, SigninActivity.class);

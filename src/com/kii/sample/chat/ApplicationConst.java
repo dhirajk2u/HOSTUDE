@@ -8,8 +8,8 @@ package com.kii.sample.chat;
 public final class ApplicationConst {
 	
 	// TODO:Needs to overwrite APP_ID and APP_KEY. Refer to http://documentation.kii.com/en/starts/android/
-	public static final String APP_ID = "f39c2d34";
-	public static final String APP_KEY = "2e98ef0bb78a58da92f9ac0709dc99ed";
+	public static final String APP_ID = "d5e4f6fb";
+	public static final String APP_KEY = "e09f6755ee0bb0b8f7b230c79c3221f0";
 	// TODO:Needs to overwrite SENDER_ID. Refer to http://developer.android.com/google/gcm/gcm.html#senderid
 	public static final String SENDER_ID = "1012419078893";
 	// TODO:Needs to overwrite FACEBOOK_APP_ID. Refer to http://documentation.kii.com/en/guides/android/managing-users/social-network-integration/native-application/facebook/ 

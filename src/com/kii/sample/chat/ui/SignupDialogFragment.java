@@ -114,16 +114,16 @@ public class SignupDialogFragment extends DialogFragment implements OnClickListe
 		}
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			try {
-				KiiUser.Builder builder = KiiUser.builderWithEmail(email);
-				KiiUser kiiUser = builder.build();
-				kiiUser.setDisplayname(username);
-				kiiUser.register(password);
-				Logger.i("registered user uri=" + kiiUser.toUri().toString());
-				return super.doInBackground(params);
-			} catch (Exception e) {
-				Logger.e("failed to sign up", e);
-				return false;
+  try {
+    KiiUser.Builder builder = KiiUser.builderWithEmail(email);
+    KiiUser kiiUser = builder.build();
+    kiiUser.setDisplayname(username);
+    kiiUser.register(password);
+    Logger.i("registered user uri=" + kiiUser.toUri().toString());
+    return super.doInBackground(params);
+  } catch (Exception e) {
+    Logger.e("failed to sign up", e);
+    return false;
 			}
 		}
 		@Override

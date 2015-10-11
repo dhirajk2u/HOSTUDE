@@ -85,10 +85,10 @@ public class FriendListFragment extends ListFragment implements LoaderCallbacks<
 				return true;
 			case R.id.menu_signout:
 				PreferencesManager.setStoredAccessToken("");
-				KiiUser.logOut();
-				intent = new Intent(getActivity(), MainActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
+KiiUser.logOut();
+intent = new Intent(getActivity(), MainActivity.class);
+intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+startActivity(intent);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

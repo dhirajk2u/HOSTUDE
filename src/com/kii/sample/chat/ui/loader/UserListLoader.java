@@ -25,16 +25,15 @@ public class UserListLoader extends AbstractAsyncTaskLoader<List<ChatUser>> {
 	}
 	@Override
 	public List<ChatUser> loadInBackground() {
-		List<ChatUser> users = new ArrayList<ChatUser>();
-		try {
-			List<ChatUser> results = ChatUser.searchByKeyword(keyword);
-			for (ChatUser user : results) {
-				// Ignore myself.
-				if (!TextUtils.equals(user.getUri(), KiiUser.getCurrentUser().toUri().toString())) {
-					users.add(user);
-				}
-			}
-		} catch (Exception e) {
+  List<ChatUser> users = new ArrayList<ChatUser>();
+  try {
+    List<ChatUser> results = ChatUser.searchByKeyword(keyword);
+    for (ChatUser user : results) {
+      if (!TextUtils.equals(user.getUri(), KiiUser.getCurrentUser().toUri().toString())) {
+        users.add(user);
+      }
+    }
+  } catch ( (Exception e) {
 			Logger.e("Unable to list users", e);
 		}
 		return users;

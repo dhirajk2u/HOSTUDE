@@ -93,21 +93,22 @@ public class SigninDialogFragment extends DialogFragment implements OnClickListe
 		
 		SimpleProgressDialogFragment.show(getFragmentManager(), "Signin", "Processing...");
 		KiiUser.logIn(new KiiUserCallBack() {
-			@Override
-			public void onLoginCompleted(int token, KiiUser user, Exception e) {
-				if (e != null) {
-					Logger.e("Unable to login.", e);
-					ToastUtils.showShort(getActivity(), "Unable to login");
-					SimpleProgressDialogFragment.hide(getFragmentManager());
-					return;
-				}
-				if (checkRemember) {
-					Logger.i(user.getAccessToken());
-					PreferencesManager.setStoredAccessToken(user.getAccessToken());
-				}
-				new PostSigninTask(user.getDisplayname(), user.getEmail()).execute();
-			}
-		}, email, password);
+			KiiUser.logIn(new KiiUserCallBack() {
+  @Override
+  public void onLoginCompleted(int token, KiiUser user, Exception e) {
+    if (e != null) {
+      Logger.e("Unable to login.", e);
+      ToastUtils.showShort(getActivity(), "Unable to login");
+      SimpleProgressDialogFragment.hide(getFragmentManager());
+      return;
+    }
+    if (checkRemember) {
+      Logger.i(user.getAccessToken());
+      PreferencesManager.setStoredAccessToken(user.getAccessToken());
+    }
+    new PostSigninTask(user.getDisplayname(), user.getEmail()).execute();
+  }
+}, email, password);
 	}
 	
 	/**
